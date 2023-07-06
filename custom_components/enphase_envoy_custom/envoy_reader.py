@@ -648,12 +648,13 @@ class EnvoyReader:  # pylint: disable=too-many-instance-attributes
         """Running getData() beforehand will set self.enpoint_type and self.isDataRetrieved"""
         """so that this method will only read data from stored variables"""
 
-        if self.endpoint_type == ENVOY_MODEL_S and self.isMeteringEnabled:
+        if self.endpoint_type == ENVOY_MODEL_S:
+            """and self.isMeteringEnabled:"""
             raw_json = self.endpoint_production_json_results.json()
             lifetime_production = raw_json["production"][1]["whLifetime"]
-        elif self.endpoint_type == ENVOY_MODEL_C or (
+        elif self.endpoint_type == ENVOY_MODEL_C: """ or (
             self.endpoint_type == ENVOY_MODEL_S and not self.isMeteringEnabled
-        ):
+        ):"""
             raw_json = self.endpoint_production_v1_results.json()
             lifetime_production = raw_json["wattHoursLifetime"]
         elif self.endpoint_type == ENVOY_MODEL_LEGACY:
